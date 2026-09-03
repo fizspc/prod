@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sąmata / Sisecam AI vaizdai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E0E0E;
+  --grey:#6B6B6B;
+  --accent:#82C2F6;
+  --light:#F4F8FC;
+  --dark:#0B0B0C;
+  --bg:#FFFFFF;
+  --line:#E4E9EE;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#F2F2F2;
+    --grey:#9A9A9A;
+    --bg:#0B0B0C;
+    --light:#141518;
+    --line:#26282C;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F2F2F2;--grey:#9A9A9A;--bg:#0B0B0C;--light:#141518;--line:#26282C;
+}
+:root[data-theme="light"]{
+  --ink:#0E0E0E;--grey:#6B6B6B;--bg:#FFFFFF;--light:#F4F8FC;--line:#E4E9EE;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-weight:400;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto;padding:56px 32px 80px}
+.dot{color:var(--accent)}
+
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.brand{font-weight:800;font-size:22px;letter-spacing:-0.02em}
+.meta{font-size:13px;color:var(--grey);text-align:right;line-height:1.8}
+
+.pdfbtn{
+  display:inline-block;margin-top:12px;
+  font-family:inherit;font-weight:600;font-size:13px;letter-spacing:0.02em;
+  color:var(--ink);background:transparent;
+  border:1px solid var(--accent);border-radius:0;
+  padding:9px 18px;cursor:pointer;
+}
+.pdfbtn:hover{background:var(--accent);color:#0E0E0E}
+.pdfbtn[disabled]{opacity:.5;cursor:default}
+.pdfmsg{display:block;margin-top:8px;font-size:12px;color:var(--grey)}
+
+h1{font-weight:800;font-size:clamp(30px,5vw,44px);line-height:1.1;letter-spacing:-0.03em;margin:44px 0 8px}
+h2{font-weight:800;font-size:20px;letter-spacing:-0.02em;margin:52px 0 16px}
+h3{font-weight:600;font-size:15px;letter-spacing:0.02em;text-transform:uppercase;color:var(--grey);margin:32px 0 10px}
+.lead{font-size:17px;color:var(--grey);margin:0 0 8px;max-width:56ch}
+
+p{margin:0 0 14px;max-width:66ch}
+ul{margin:0 0 14px;padding-left:20px;max-width:66ch}
+li{margin-bottom:7px}
+strong{font-weight:600}
+.note{font-size:14px;color:var(--grey);margin-top:14px}
+
+.panel{background:var(--light);padding:24px 26px;margin:24px 0}
+.panel p:last-child,.panel ul:last-child{margin-bottom:0}
+
+.tablewrap{overflow-x:auto;margin:18px 0 8px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+th{text-align:left;font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey);padding:0 12px 10px 0;border-bottom:1px solid var(--line)}
+td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th.num,td.num{text-align:right;padding-right:0;white-space:nowrap}
+tr.sub td{font-weight:600}
+tr.group td{font-weight:800;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);padding-top:26px;border-bottom:none}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;background:var(--dark);color:#F2F2F2;padding:22px 26px;margin-top:16px;flex-wrap:wrap}
+.total .lbl{font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:#9A9A9A}
+.total .val{font-weight:800;font-size:30px;letter-spacing:-0.02em}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:18px 0}
+@media(max-width:640px){.two{grid-template-columns:1fr;gap:8px}}
+
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13.5px;color:var(--grey)}
+.foot b{color:var(--ink);font-weight:600}
+a{color:inherit}
+
+@media print{
+  :root{--ink:#0E0E0E;--grey:#6B6B6B;--bg:#FFFFFF;--light:#F4F8FC;--line:#E4E9EE}
+  body{background:#FFFFFF;color:#0E0E0E}
+  .wrap{padding:0;max-width:none}
+  #pdfbox{display:none !important}
+  h2{margin-top:32px;page-break-after:avoid}
+  table,.total,.panel{page-break-inside:avoid}
+  .total{background:#0B0B0C !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .foot{margin-top:36px}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="doc">
+
+  <div class="top">
+    <div class="brand">prod<span class="dot">.</span>lt</div>
+    <div class="meta">
+      Sąmata Nr. PRD-2026-09-SIS-01<br>
+      2026 m. rugsėjo 3 d.<br>
+      Galioja 14 dienų
+      <span id="pdfbox"></span>
+    </div>
+  </div>
+
+  <h1>Sisecam / DI vaizdai<span class="dot">.</span></h1>
+  <p class="lead">Užsakovas: Karuselė. Apimtis: DI gamyklos vaizdų kūrimas ir integracija į nufilmuotus klipus CAFE ir HANDCRAFT.</p>
+
+  <h2>Apimtis<span class="dot">.</span></h2>
+  <ul>
+    <li><strong>CAFE, Tiltas</strong> - naujas apšvietimo sprendimas Bosforo vaizdui lange. Šviesos šaltinis už kadro dešinėje, sutampantis su set'o apšvietimu.</li>
+    <li><strong>CAFE, gamyklos zona buteliuke</strong> - mašinų tempas priartinamas prie realaus gamybos greičio, ištaisomas butelio judėjimas nuo formos ant konvejerio.</li>
+    <li><strong>HANDCRAFT</strong> - fabriko DI video sukūrimas ir kompozicija į vazos stiklą ant Užsakovo pateikto išvalyto plate'o.</li>
+    <li><strong>Perdavimo raiška - 3840 × 2160.</strong> Galutiniai failai generuojami padidinta raiška, todėl generavimo kaina didesnė nei standartinio HD. Ši pozicija sąmatoje išskirta atskira eilute.</li>
+    <li>Stills'ai tvirtinami raštu prieš pradedant video generavimą.</li>
+    <li>CAR ir WINDOW klipams sąmata ruošiama atskirai.</li>
+  </ul>
+
+  <h2>Skaičiavimas<span class="dot">.</span></h2>
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr><th>Darbas</th><th class="num">Kiekis</th><th class="num">Vnt.</th><th class="num">Suma</th></tr>
+    </thead>
+    <tbody>
+      <tr class="group"><td colspan="4">Cafe</td></tr>
+      <tr><td>Tilto stills'ai - minimum 3 variantai</td><td class="num">1</td><td class="num">150</td><td class="num">150</td></tr>
+      <tr><td>Tilto DI video iš patvirtinto stills'o - minimum 3 variantai</td><td class="num">1</td><td class="num">450</td><td class="num">450</td></tr>
+      <tr><td>Tilto DI video kompozicija į kavinės langą - atspindžiai, spalvos suderinimas</td><td class="num">1</td><td class="num">350</td><td class="num">350</td></tr>
+      <tr><td>Gamyklos DI video, butelio kepimo mechanizmas - minimum 3 variantai</td><td class="num">1</td><td class="num">600</td><td class="num">600</td></tr>
+      <tr><td>Gamyklos DI video kompozicija į butelį</td><td class="num">1</td><td class="num">600</td><td class="num">600</td></tr>
+      <tr><td>Patvirtinto varianto galutinio failo generavimas 3840 × 2160</td><td class="num">1</td><td class="num">200</td><td class="num">200</td></tr>
+      <tr class="sub"><td colspan="3">Cafe iš viso</td><td class="num">2 350</td></tr>
+
+      <tr class="group"><td colspan="4">Handcraft</td></tr>
+      <tr><td>Handcraft stills'ai - minimum 3 variantai</td><td class="num">1</td><td class="num">150</td><td class="num">150</td></tr>
+      <tr><td>Fabriko DI video animavimas - minimum 3 variantai</td><td class="num">1</td><td class="num">600</td><td class="num">600</td></tr>
+      <tr><td>Fabriko DI video kompozicija į vazos stiklą</td><td class="num">1</td><td class="num">600</td><td class="num">600</td></tr>
+      <tr><td>Patvirtinto varianto galutinio failo generavimas 3840 × 2160</td><td class="num">1</td><td class="num">200</td><td class="num">200</td></tr>
+      <tr class="sub"><td colspan="3">Handcraft iš viso</td><td class="num">1 550</td></tr>
+
+      <tr class="group"><td colspan="4">Bendra</td></tr>
+      <tr><td>Prodiusavimas</td><td class="num">1</td><td class="num">2 000</td><td class="num">2 000</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="total">
+    <span class="lbl">Iš viso, be PVM</span>
+    <span class="val">5 900 EUR</span>
+  </div>
+
+  <p class="note">Į kiekvieną poziciją, išskyrus galutinio failo generavimą, įskaičiuoti 2 korekcijų roundai. Papildomas roundas - 50 proc. tos pozicijos kainos.</p>
+
+  <h2>Įskaičiuota ir neįskaičiuota<span class="dot">.</span></h2>
+  <div class="two">
+    <div>
+      <h3>Įskaičiuota</h3>
+      <ul>
+        <li>DI įrankių licencijos ir generavimo sąnaudos</li>
+        <li>Po 2 korekcijų roundus kiekvienai pozicijai</li>
+        <li>Spalvos suderinimas su pateiktu plate'u</li>
+        <li>Perdavimas 3840 × 2160 raiška</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Neįskaičiuota</h3>
+      <ul>
+        <li>Vazos išvalymas VFX būdu - atlieka Užsakovas</li>
+        <li>Galutinis klipų grading'as ir montažas</li>
+        <li>Garsas, muzika, licencijos</li>
+        <li>CAR ir WINDOW klipai</li>
+        <li>Naujų kadrų ar scenų, nenumatytų šioje sąmatoje, kūrimas</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Prielaidos<span class="dot">.</span></h2>
+  <div class="panel">
+    <ul>
+      <li>Galutinio kliento pageidavimai, keičiantys jau patvirtintą stills'ą, laikomi papildomu korekcijų roundu.</li>
+      <li>Tilto vaizdo perspektyva derinama maksimaliai artimai kadrui, tačiau 100 proc. sutapimas su nufilmuota perspektyva negarantuojamas.</li>
+    </ul>
+  </div>
+
+  <h2>Atsiskaitymas<span class="dot">.</span></h2>
+  <ul>
+    <li>50 proc. - iškart po galutinių failų patvirtinimo</li>
+    <li>50 proc. - per 30 kalendorinių dienų nuo sąskaitos gavimo</li>
+    <li>Papildomi korekcijų roundai ir apimties pakeitimai pateikiami atskira sąskaita</li>
+  </ul>
+
+  <h2>Teisės<span class="dot">.</span></h2>
+  <p>Turtinės teisės į sukurtą rezultatą perduodamos Užsakovui po pilno atsiskaitymo.</p>
+  <div class="panel">
+    <p>Vykdytojas turi teisę naudoti sukurtą rezultatą ir tarpinę medžiagą savo profesiniame portfolio, darbų pristatymuose ir rinkodaros tikslais nuo pirmo viešo rezultato paskelbimo dienos; projekto sustabdymo atveju - nuo atsiskaitymo pagal atskirą susitarimą dienos, naudojant medžiagą be Užsakovo prekės ženklo elementų.</p>
+    <p><strong>Šis punktas turi viršenybę prieš konfidencialumo punktą.</strong></p>
+  </div>
+
+  <div class="foot">
+    <b>Vytautas Jakutis</b> · Prodiuseris<br>
+    +370 685 38288 · vjakutis@gmail.com · prod.lt
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(async function(){
+  var downloads = null;
+  try { downloads = await window.claude.use("downloads"); } catch(e){ downloads = null; }
+
+  var box = document.getElementById('pdfbox');
+  box.innerHTML = '<br><button class="pdfbtn" id="pdf">Atsisiųsti PDF</button><span class="pdfmsg" id="pdfmsg"></span>';
+  var btn = document.getElementById('pdf');
+  var msg = document.getElementById('pdfmsg');
+
+  btn.addEventListener('click', async function(){
+    if(!downloads){ window.print(); return; }
+    if(typeof html2canvas === 'undefined' || !window.jspdf){ window.print(); return; }
+    btn.disabled = true; btn.textContent = 'Ruošiama...'; msg.textContent = '';
+    var root = document.documentElement;
+    var prevTheme = root.getAttribute('data-theme');
+    var el = document.getElementById('doc');
+    root.setAttribute('data-theme','light');
+    box.style.visibility = 'hidden';
+    try{
+      var canvas = await html2canvas(el, {scale:2, backgroundColor:'#FFFFFF', useCORS:true, logging:false});
+      var pdf = new window.jspdf.jsPDF({unit:'mm', format:'a4', orientation:'portrait'});
+      var pw = 210, ph = 297, m = 12;
+      var cw = pw - m*2, chMax = ph - m*2;
+      var pxPerMm = canvas.width / cw;
+      var slicePx = Math.floor(chMax * pxPerMm);
+      var y = 0, first = true;
+      while(y < canvas.height){
+        var hPx = Math.min(slicePx, canvas.height - y);
+        var tmp = document.createElement('canvas');
+        tmp.width = canvas.width; tmp.height = hPx;
+        var ctx = tmp.getContext('2d');
+        ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0,0,tmp.width,tmp.height);
+        ctx.drawImage(canvas, 0, y, canvas.width, hPx, 0, 0, canvas.width, hPx);
+        if(!first) pdf.addPage();
+        pdf.addImage(tmp.toDataURL('image/jpeg',0.95), 'JPEG', m, m, cw, hPx/pxPerMm);
+        first = false; y += hPx;
+      }
+      var buf = pdf.output('arraybuffer');
+      await downloads.save({filename:'Samata_Sisecam_PRD-2026-09-SIS-01.pdf', data: buf});
+      msg.textContent = 'Failas paruoštas.';
+    } catch(err){
+      var code = err && err.code ? err.code : '';
+      if(code === 'declined'){ msg.textContent = 'Atšaukta.'; }
+      else { msg.textContent = 'Nepavyko sugeneruoti PDF.'; }
+    } finally {
+      box.style.visibility = '';
+      if(prevTheme === null) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', prevTheme);
+      btn.disabled = false; btn.textContent = 'Atsisiųsti PDF';
+    }
+  });
+})();
+</script>
+</body>
+</html>
